@@ -8,7 +8,7 @@
 						col-xs-12
 						post-container">
         <!-- Main Content -->
-        <div class="post-preview" v-html="article.htmlContent">
+        <div class="post-preview markdown-body" v-html="article.htmlContent">
         </div>
         <hr>
         </div>
@@ -17,6 +17,8 @@
 </template>
 
 <script>
+//  import 'github-markdown-css/github-markdown.css'
+
   export default{
     name: 'Post',
     computed:{
