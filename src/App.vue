@@ -1,5 +1,5 @@
 <template>
-  <div id="app" v-bind:style="bgColor">
+  <div id="app" :style="bgColor">
     <my-nav></my-nav>
     <my-header v-if="isAbout"></my-header>
     <my-header2 v-else></my-header2>

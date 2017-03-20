@@ -2,24 +2,28 @@
  * Created by Lee on 2016/12/6.
  */
 import * as types from './mutation-types'
-import Vue from 'vue'
+
+import { request, getUrl } from './../request'
 
 export default {
   //获取文章列表
   [types.GET_ARTICLE_LIST](state,params){
-    Vue.http.post('http://localhost:8080/articles', params).then((response)=>{
-      // console.log(response.body.code)
-      state.articles = response.body.rows
-    }, (response)=>{
-      //error
+    request.article.articles(params).then(res=>{
+      if(200 == res.code){
+        state.articles = res.rows
+      } else{
+        console.log(res.body.code)
+      }
     })
   },
   //获取单个文章信息
   [types.GET_ARTICLE](state,id){
-    Vue.http.get('http://localhost:8080/article/'+id).then((response)=>{
-      state.currentArticle= response.body.article
-    }, (response)=>{
-      //error
+    request.article.get(id).then(res=>{
+      if(200 == res.code){
+        state.currentArticle= res.article
+      } else{
+        console.log(res.body.code)
+      }
     })
   }
 }

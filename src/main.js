@@ -7,6 +7,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min'
 import 'font-awesome/css/font-awesome.min.css'
 
+import NProgress from 'nprogress'//页面顶部进度条
+import 'nprogress/nprogress.css'
+
 import store from './store'
 
 //自定义组件
@@ -33,6 +36,15 @@ const routes = [{
 
 const router = new VueRouter({
   routes
+});
+
+router.beforeEach((to, from, next) => {
+  NProgress.start();
+  next()
+})
+
+router.afterEach(transition => {
+  NProgress.done();
 });
 
 new Vue({

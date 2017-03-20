@@ -1,6 +1,6 @@
 <!--头部巨幕图-->
 <template>
-  <header class="intro-header" v-bind:style="bgImg">
+  <header class="intro-header" :style="bgImg">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
@@ -28,13 +28,28 @@
       },
       bgImg(){
         if(this.$route.path === '/post'){
-          return {
-            backgroundImage: 'url('+require('./../assets/img/post.jpg')+')'
+          var jumbotron = this.$store.state.currentArticle.jumbotron;
+          if('' != jumbotron && null != jumbotron){
+            return {
+              backgroundImage: 'url('+jumbotron+')'
+            }
+          }else {
+            return {
+              backgroundImage: 'url('+require('./../assets/img/post.jpg')+')'
+            }
           }
         } else {
           return {
             backgroundImage: 'url('+require('./../assets/img/home.jpg')+')'
           }
+        }
+      }
+    },
+    mounted(){
+      var jumbotron = this.$store.state.currentArticle.jumbotron;
+      if('' != jumbotron && null != jumbotron){
+        this.bgImg = {
+          backgroundImage: 'url('+jumbotron+')'
         }
       }
     }

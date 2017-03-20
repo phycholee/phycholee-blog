@@ -29,8 +29,7 @@
 
         <hr>
         <!-- Pager -->
-        <ul class="pager">
-        </ul>
+        <ul class="pager"></ul>
       </div>
 
       <side-bar></side-bar>
@@ -41,29 +40,31 @@
 
 <script>
   import SideBar from './SideBar.vue'
+  import { request, getUrl } from './../request'
 
-  var params = {
-    offset: 0,
-    limit: 10,
-    status: 1
-  }
 
   export default{
     name: 'Home',
+    data(){
+      return {
+        articles: []
+      }
+    },
     components:{
       'side-bar':SideBar
     },
     computed:{
-      articles(){
-        return this.$store.state.articles
-      }
+//      articles(){
+//        return this.$store.state.articles
+//      }
     },
     mounted() {
-      this.$store.dispatch('getArticleList', params)
+//      this.$store.dispatch('getArticleList', params)
+
+      getData(this)
     },
     methods:{
       goPost(id){
-//        this.$store.dispatch('getArticle', id)
         this.$router.push({
           path:'/post',
           query: {
@@ -72,6 +73,23 @@
         })
       }
     }
+  }
+
+  var getData = (_this) => {
+
+    var params = {
+      offset: 0,
+      limit: 10,
+    }
+    //获取数据
+    request.article.articles(params).then(res=>{
+      if(200 == res.code){
+        _this.articles = res.rows
+        _this.pageTotal = res.total
+      } else{
+        _this.$message.error('获取数据失败');
+      }
+    })
   }
 </script>
 
