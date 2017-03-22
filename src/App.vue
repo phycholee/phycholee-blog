@@ -1,12 +1,15 @@
 <template>
   <div id="app" :style="bgColor">
     <my-nav></my-nav>
-    <my-header v-if="isAbout"></my-header>
-    <my-header2 v-else></my-header2>
+
+    <div v-if="isTag">
+      <my-header v-if="isAbout"></my-header>
+      <my-header2 v-else></my-header2>
+    </div>
 
     <router-view></router-view>
 
-    <my-footer></my-footer>
+    <my-footer v-if="isTag"></my-footer>
   </div>
 </template>
 
@@ -29,6 +32,9 @@ export default {
   computed:{
     isAbout(){
       return this.$route.path !== '/about';
+    },
+    isTag(){
+      return this.$route.path !== '/tags';
     },
     bgColor(){
       if (this.$route.path === '/about'){

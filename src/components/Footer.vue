@@ -8,8 +8,8 @@
           <p class="copyright text-muted">
             Copyright © <a href="https://github.com/phycholee">PhychoLee</a> 2016
             <br>
-            Power by <a href="http://jekyllrb.com/">Jekyll</a>
-            Theme by <a href="http://huangxuan.me/">Hux</a>
+            <!--Power by <a href="http://jekyllrb.com/">Jekyll</a>-->
+            <!--Theme by <a href="http://huangxuan.me/">Hux</a>-->
           </p>
         </div>
       </div>

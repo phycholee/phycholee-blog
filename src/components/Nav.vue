@@ -18,7 +18,7 @@
               <router-link to="/home">Home</router-link>
             </li>
             <li>
-              <a href="">Posts</a>
+              <router-link to="/tags">Tags</router-link>
             </li>
             <li>
               <router-link to="/about">About</router-link>

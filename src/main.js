@@ -16,6 +16,7 @@ import store from './store'
 import Home from './components/Home'
 import About from './components/About'
 import Post from './components/Post'
+import Tags from './components/tag/Tags'
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
@@ -26,6 +27,9 @@ const routes = [{
 },{
   path:'/home',
   component: Home
+},{
+  path:'/tags',
+  component: Tags
 },{
   path:'/about',
   component: About
