@@ -7,8 +7,8 @@ const root = 'http://localhost:8080/'
 const urlMap = {
   articles: root+'articles',
   article:  root+'article',
-  tags: root+'admin/tags',
-  tag: root+'admin/tag',
+  tags: root+'tags',
+  tag: root+'tag',
 }
 
 const getUrl = name => {

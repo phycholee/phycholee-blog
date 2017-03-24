@@ -14,9 +14,10 @@ import store from './store'
 
 //自定义组件
 import Home from './components/Home'
-import About from './components/About'
+import About from './components/about/About'
 import Post from './components/Post'
 import Tags from './components/tag/Tags'
+import Tag from './components/tag/Tag'
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
@@ -30,6 +31,9 @@ const routes = [{
 },{
   path:'/tags',
   component: Tags
+},{
+  path:'/tag',
+  component: Tag
 },{
   path:'/about',
   component: About

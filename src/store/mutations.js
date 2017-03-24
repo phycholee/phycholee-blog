@@ -25,5 +25,15 @@ export default {
         console.log(res.body.code)
       }
     })
+  },
+  //获取单个标签信息
+  [types.GET_TAG](state,id){
+    request.tag.get(id).then(res=>{
+      if(200 == res.code){
+        state.currentTag= res.data
+      } else{
+        console.log(res.body.code)
+      }
+    })
   }
 }

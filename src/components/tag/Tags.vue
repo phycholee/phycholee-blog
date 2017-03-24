@@ -10,7 +10,7 @@
 
           <div class="tags">
             <div style="display: inline-block" v-for="(tag, index) in tags">
-              <a class="tag" @click="showTag(tag)">{{ tag.name }}</a>
+              <a class="tag" @click="goTag(tag.id)">{{ tag.name }}</a>
               <input type="hidden" v-model="tag.id">
             </div>
           </div>
@@ -70,7 +70,14 @@
       })
     },
     methods:{
-
+      goTag(id){
+        this.$router.push({
+        path:'/tag',
+        query: {
+          id: id
+        }
+      })
+      }
     }
   }
 

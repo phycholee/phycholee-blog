@@ -2,21 +2,19 @@
   <div id="app" :style="bgColor">
     <my-nav></my-nav>
 
-    <div v-if="isTag">
-      <my-header v-if="isAbout"></my-header>
-      <my-header2 v-else></my-header2>
-    </div>
+    <!--<div v-if="isNotTag">-->
+      <!--<my-header v-if="isAbout"></my-header>-->
+    <!--</div>-->
 
     <router-view></router-view>
 
-    <my-footer v-if="isTag"></my-footer>
+    <my-footer v-if="isNotTag"></my-footer>
   </div>
 </template>
 
 <script>
 import Nav from './components/Nav'
 import Header from './components/Header'
-import Header2 from './components/Header2'
 import Footer from './components/Footer'
 
 
@@ -26,14 +24,13 @@ export default {
   components: {
     'my-nav':Nav,
     'my-header':Header,
-    'my-header2':Header2,
     'my-footer':Footer
   },
   computed:{
     isAbout(){
       return this.$route.path !== '/about';
     },
-    isTag(){
+    isNotTag(){
       return this.$route.path !== '/tags';
     },
     bgColor(){

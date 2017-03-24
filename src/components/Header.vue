@@ -46,16 +46,11 @@
       }
     },
     mounted(){
-      var jumbotron = this.$store.state.currentArticle.jumbotron;
-      if('' != jumbotron && null != jumbotron){
-        this.bgImg = {
-          backgroundImage: 'url('+jumbotron+')'
-        }
-      }
+
     }
   }
 </script>
 
 <style scoped>
-  @import "../assets/css/header.css";
+  @import "./../assets/css/header.css";
 </style>

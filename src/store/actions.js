@@ -7,5 +7,8 @@ export default {
   },
   getArticle({commit},id){
     commit(types.GET_ARTICLE,id)
+  },
+  getTag({commit},id){
+    commit(types.GET_TAG,id)
   }
 }

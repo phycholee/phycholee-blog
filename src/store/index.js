@@ -18,7 +18,8 @@ const state = {
     avatar: './../assert/img/avatar'
   },
   articles:[],
-  currentArticle:{}
+  currentArticle:{},
+  currentTag:{}
 };
 
 export default new Vuex.Store({

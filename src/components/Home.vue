@@ -1,45 +1,50 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-1
-                        col-md-8 col-md-offset-1
-                        col-sm-12
-                        col-xs-12
-                        post-container">
+  <div>
+    <my-header></my-header>
 
-        <div class="post-preview" v-for="article in articles">
-          <a class="to-post" @click="goPost(article.id)">
-              <h2 class="post-title">
-                {{article.title}}
-              </h2>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-1
+                          col-md-8 col-md-offset-1
+                          col-sm-12
+                          col-xs-12
+                          post-container">
 
-              <h3 class="post-subtitle">
-                {{article.subTitle}}
-              </h3>
+          <div class="post-preview" v-for="article in articles">
+            <a class="to-post" @click="goPost(article.id)">
+                <h2 class="post-title">
+                  {{article.title}}
+                </h2>
 
-              <div class="post-content-preview">
-                {{article.htmlContent}}
-              </div>
-          </a>
-          <p class="post-meta">
-            Posted by PhychoLee on
-            {{article.createTime}}
-          </p>
+                <h3 class="post-subtitle">
+                  {{article.subTitle}}
+                </h3>
+
+                <div class="post-content-preview">
+                  {{article.htmlContent}}
+                </div>
+            </a>
+            <p class="post-meta">
+              Posted by PhychoLee on
+              {{article.createTime}}
+            </p>
+          </div>
+
+          <hr>
+          <!-- Pager -->
+          <ul class="pager"></ul>
         </div>
 
-        <hr>
-        <!-- Pager -->
-        <ul class="pager"></ul>
+        <side-bar></side-bar>
+
       </div>
-
-      <side-bar></side-bar>
-
     </div>
   </div>
 </template>
 
 <script>
-  import SideBar from './SideBar.vue'
+  import Header from './Header'
+  import SideBar from './SideBar'
   import { request, getUrl } from './../request'
 
 
@@ -51,7 +56,8 @@
       }
     },
     components:{
-      'side-bar':SideBar
+      'my-header': Header,
+      'side-bar': SideBar
     },
     computed:{
 //      articles(){
@@ -87,12 +93,12 @@
         _this.articles = res.rows
         _this.pageTotal = res.total
       } else{
-        _this.$message.error('获取数据失败');
+
       }
     })
   }
 </script>
 
 <style scoped>
-  @import "../assets/css/index.css";
+  @import "./../assets/css/index.css";
 </style>

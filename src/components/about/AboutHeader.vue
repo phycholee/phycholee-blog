@@ -10,7 +10,7 @@
     name: 'Header2',
     data(){
       return {
-        avatar: require('./../assets/img/avatar.jpg')
+        avatar: require('./../../assets/img/avatar.jpg')
       }
     },
 
