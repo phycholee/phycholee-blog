@@ -20,7 +20,7 @@ export default {
   [types.GET_ARTICLE](state,id){
     request.article.get(id).then(res=>{
       if(200 == res.code){
-        state.currentArticle= res.article
+        state.currentArticle= res.data
       } else{
         console.log(res.body.code)
       }

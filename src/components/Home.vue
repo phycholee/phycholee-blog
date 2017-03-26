@@ -52,7 +52,8 @@
     name: 'Home',
     data(){
       return {
-        articles: []
+        articles: [],
+        pageTotal: 0
       }
     },
     components:{
@@ -67,7 +68,19 @@
     mounted() {
 //      this.$store.dispatch('getArticleList', params)
 
-      getData(this)
+      var params = {
+        offset: 0,
+        limit: 10,
+      }
+      //获取数据
+      request.article.articles(params).then(res=>{
+        if(200 == res.code){
+          this.articles = res.data
+          this.pageTotal = res.total
+        } else{
+
+        }
+      })
     },
     methods:{
       goPost(id){
@@ -81,22 +94,6 @@
     }
   }
 
-  var getData = (_this) => {
-
-    var params = {
-      offset: 0,
-      limit: 10,
-    }
-    //获取数据
-    request.article.articles(params).then(res=>{
-      if(200 == res.code){
-        _this.articles = res.rows
-        _this.pageTotal = res.total
-      } else{
-
-      }
-    })
-  }
 </script>
 
 <style scoped>

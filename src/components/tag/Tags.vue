@@ -11,7 +11,6 @@
           <div class="tags">
             <div style="display: inline-block" v-for="(tag, index) in tags">
               <a class="tag" @click="goTag(tag.id)">{{ tag.name }}</a>
-              <input type="hidden" v-model="tag.id">
             </div>
           </div>
 
@@ -62,7 +61,7 @@
         if(200 == res.code){
 
           //初始化初始数据
-          this.tags = setColorClass(res.rows)
+          this.tags = setColorClass(res.data)
 
         } else{
           this.$message.error('获取数据失败');

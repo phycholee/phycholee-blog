@@ -44,6 +44,8 @@
 <script>
   import TagHeader from './TagHeader'
   import SideBar from './../SideBar'
+  import { request, getUrl } from './../../request'
+
 
   export default{
     name: 'Tags',
@@ -51,13 +53,39 @@
       'tag-header': TagHeader,
       'side-bar': SideBar
     },
-    computed:{
-      articles(){
-        return ''
+    data(){
+      return {
+        articles: [],
+        pageTotal: 0
       }
     },
     mounted(){
       this.$store.dispatch('getTag', this.$route.query.id)
+
+      var params = {
+        offset: 0,
+        limit: 10,
+        tagId: this.$route.query.id
+      }
+
+      request.article.articles(params).then(res=>{
+        if(200 == res.code){
+          this.articles = res.data
+          this.pageTotal = res.total
+        } else{
+
+        }
+      })
+    },
+    methods:{
+      goPost(id){
+        this.$router.push({
+          path:'/post',
+          query: {
+            id: id
+          }
+        })
+      }
     }
 
   }
