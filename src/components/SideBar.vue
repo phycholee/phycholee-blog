@@ -21,7 +21,7 @@
     <hr>
     <h5>最近文章</h5>
     <ul class="recent-post">
-      <li  v-for="article in articles"><a @click="goPost(article.id)">{{article.title}}</a></li>
+      <li v-for="article in articles"><a @click="goPost(article.id)">{{article.title}}</a></li>
     </ul>
 
     <!-- Friends Blog -->

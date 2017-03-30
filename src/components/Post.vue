@@ -36,6 +36,9 @@
     },
     mounted(){
       this.$store.dispatch('getArticle', this.$route.query.id)
+
+      //回到顶部
+      window.scrollTo(0, 0)
     }
   }
 </script>

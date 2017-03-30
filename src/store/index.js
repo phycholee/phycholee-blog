@@ -18,7 +18,8 @@ const state = {
   },
   articles:[],
   currentArticle:{},
-  currentTag:{}
+  currentTag:{},
+  homeScrollHeight: 0
 };
 
 export default new Vuex.Store({

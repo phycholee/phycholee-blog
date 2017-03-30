@@ -47,6 +47,8 @@
   import SideBar from './SideBar'
   import { request, getUrl } from './../request'
 
+  import Vue from 'vue'
+
 
   export default{
     name: 'Home',
@@ -72,6 +74,8 @@
         offset: 0,
         limit: 10,
       }
+
+
       //获取数据
       request.article.articles(params).then(res=>{
         if(200 == res.code){
@@ -81,16 +85,35 @@
 
         }
       })
+
+      this.$nextTick(function(){
+        //渲染完毕
+
+      });
+
+    },
+    updated(){
+      //还原当前滚动条高度
+      let height = this.$store.state.homeScrollHeight
+      if (height > 0){
+        window.scrollTo(0, height)
+        console.log('滚动到：'+height)
+        this.$store.dispatch('setHomeScroll', 0)
+      }
     },
     methods:{
       goPost(id){
+        let height = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+        console.log('当前滚动条高度：'+height)
+        this.$store.dispatch('setHomeScroll', height)
+
         this.$router.push({
           path:'/post',
           query: {
             id: id
           }
         })
-      }
+      },
     }
   }
 

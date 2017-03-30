@@ -42,8 +42,32 @@ const routes = [{
   component: Post
 }];
 
+// const scrollBehavior = (to, from, savedPosition) => {
+//   if (savedPosition) {
+//     console.log(savedPosition)
+//     return savedPosition
+//   } else {
+//     return { x: 0, y: 0 }
+//   }
+// }
+
+const scrollBehavior = (to, from, savedPosition) => {
+  if (savedPosition) {
+    return savedPosition
+  } else {
+    if (to.hash) {
+      return { anchor: true }
+    }
+    if (to.matched.some(m => m.meta.scrollToTop)) {
+      return { x: 0, y: 0 }
+    }
+  }
+}
+
 const router = new VueRouter({
-  routes
+  // mode: 'history',
+  history: true,
+  routes,
 });
 
 router.beforeEach((to, from, next) => {

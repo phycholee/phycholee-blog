@@ -6,3 +6,4 @@
 export const GET_ARTICLE_LIST = 'GET_ARTICLE_LIST';
 export const GET_ARTICLE = 'GET_ARTICLE';
 export const GET_TAG = 'GET_TAG';
+export const SET_HOME_SCROLL = 'SET_HOME_SCROLL';

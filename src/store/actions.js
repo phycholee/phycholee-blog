@@ -10,5 +10,8 @@ export default {
   },
   getTag({commit},id){
     commit(types.GET_TAG,id)
+  },
+  setHomeScroll({commit},height){
+    commit(types.SET_HOME_SCROLL,height)
   }
 }

@@ -60,6 +60,9 @@
       }
     },
     mounted(){
+      //回到顶部
+      window.scrollTo(0, 0)
+
       this.$store.dispatch('getTag', this.$route.query.id)
 
       var params = {

@@ -35,5 +35,9 @@ export default {
         console.log(res.body.code)
       }
     })
+  },
+  //设置首页回滚高度
+  [types.SET_HOME_SCROLL](state,height){
+    state.homeScrollHeight = height
   }
 }

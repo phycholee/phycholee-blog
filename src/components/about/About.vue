@@ -92,6 +92,10 @@
     name: 'Home',
     components:{
       'about-header': AboutHeader
+    },
+    mounted(){
+      //回到顶部
+      window.scrollTo(0, 0)
     }
   }
 </script>

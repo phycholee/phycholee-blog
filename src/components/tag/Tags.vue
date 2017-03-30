@@ -57,6 +57,9 @@
       }
     },
     mounted(){
+      //回到顶部
+      window.scrollTo(0, 0)
+
       request.tag.tags().then(res => {
         if(200 == res.code){
 
