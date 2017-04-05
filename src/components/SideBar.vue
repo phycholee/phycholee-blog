@@ -54,7 +54,7 @@
     },
     mounted(){
       var params = {
-        offset: 0,
+        page: 1,
         limit: 5,
       }
       //获取数据

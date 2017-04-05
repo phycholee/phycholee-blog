@@ -32,7 +32,20 @@
 
           <hr>
           <!-- Pager -->
-          <ul class="pager"></ul>
+          <ul class="pager">
+            <li class="previous" v-if="previousShow">
+              <a @click="previous()">
+                ← PREVIOUS
+              </a>
+            </li>
+
+            <li class="next" v-if="nextShow">
+              <a @click="next()">
+                NEXT →
+              </a>
+            </li>
+          </ul>
+
         </div>
 
         <side-bar></side-bar>
@@ -56,7 +69,13 @@
     data(){
       return {
         articles: [],
-        pageTotal: 0
+        pageTotal: 0,
+        params : {
+          page: 1,
+          limit: 10,
+          tagId: this.$route.query.id
+        },
+        loading: false
       }
     },
     mounted(){
@@ -65,23 +84,69 @@
 
       this.$store.dispatch('getTag', this.$route.query.id)
 
-      var params = {
-        offset: 0,
-        limit: 10,
-        tagId: this.$route.query.id
-      }
-
-      request.article.articles(params).then(res=>{
+      request.article.articles(this.params).then(res=>{
         if(200 == res.code){
           this.articles = res.data
           this.pageTotal = res.total
         } else{
-
         }
       })
     },
+    updated(){
+      //还原当前滚动条高度
+      let height = this.$store.state.homeScrollHeight
+      if (height > 0){
+        window.scrollTo(0, height)
+        console.log('滚动到：'+height)
+        this.$store.dispatch('setHomeScroll', 0)
+      }
+    },
     methods:{
+      previous(){
+        this.loading = true
+
+        if(this.params.page > 1){
+          this.params.page -= 1
+
+          request.article.articles(this.params).then(res=>{
+            if(200 == res.code){
+              this.articles = res.data
+              this.pageTotal = res.total
+            } else{
+
+            }
+            this.loading = false
+          })
+        }
+        window.scrollTo(0, 358)
+
+      },
+      next(){
+        this.loading = true
+
+        let lastPage = parseInt(this.pageTotal/this.params.limit+1)
+
+        if(this.params.page < lastPage){
+          this.params.page += 1
+
+          request.article.articles(this.params).then(res=>{
+            if(200 == res.code){
+              this.articles = res.data
+              this.pageTotal = res.total
+            } else{
+
+            }
+            this.loading = false
+          })
+
+          window.scrollTo(0, 358)
+        }
+      },
       goPost(id){
+        let height = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+        console.log('当前滚动条高度：'+height)
+        this.$store.dispatch('setHomeScroll', height)
+
         this.$router.push({
           path:'/post',
           query: {

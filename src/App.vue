@@ -27,9 +27,6 @@ export default {
     'my-footer':Footer
   },
   computed:{
-    isAbout(){
-      return this.$route.path !== '/about';
-    },
     isNotTag(){
       return this.$route.path !== '/tags';
     },
