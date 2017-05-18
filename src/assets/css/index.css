@@ -273,7 +273,8 @@ a img:hover, a img:focus {
   font-size: 12px;
   text-decoration: none;
   margin: 0 1px;
-  margin-bottom: 6px
+  margin-bottom: 6px;
+  cursor: pointer;
 }
 
 .tags a:hover, .tags .tag:hover, .tags a:active, .tags .tag:active {

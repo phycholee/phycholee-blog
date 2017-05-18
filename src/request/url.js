@@ -9,6 +9,7 @@ const urlMap = {
   article:  root+'article',
   tags: root+'tags',
   tag: root+'tag',
+  indexTags: root+'index-tags'
 }
 
 const getUrl = name => {

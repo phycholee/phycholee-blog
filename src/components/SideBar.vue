@@ -11,10 +11,9 @@
       <!-- no hr -->
       <h5><a href="#">标签</a></h5>
       <div class="tags">
-        <a href="#" title="前端开发" rel="3">前端开发</a>
-
-        <a href="#" title="Java" rel="3">Java</a>
-
+        <div style="display: inline-block" v-for="(tag, index) in tags">
+          <a class="tag" @click="goTag(tag.id)">{{ tag.name }}</a>
+        </div>
       </div>
     </section>
 
@@ -28,7 +27,7 @@
     <hr>
     <h5>友情链接</h5>
     <ul class="list-inline">
-      <li><a href="#" target="_blank">Hux Blog</a></li>
+      <li><a href="http://huangxuan.me/" target="_blank">Hux Blog</a></li>
     </ul>
   </div>
 </template>
@@ -39,7 +38,8 @@
     name: 'SideBar',
     data(){
       return {
-        articles: []
+        articles: [],
+        tags: []
       }
     },
     methods:{
@@ -50,10 +50,18 @@
             id: id
           }
         })
+      },
+      goTag(id){
+        this.$router.push({
+          path:'/tag',
+          query: {
+            id: id
+          }
+        })
       }
     },
     mounted(){
-      var params = {
+      let params = {
         page: 1,
         limit: 5,
       }
@@ -63,6 +71,17 @@
           this.articles = res.data
         } else{
 
+        }
+      })
+
+      let params2 = {
+        isIndex: 1
+      }
+      request.tag.indexTags(params2).then(res => {
+        if(200 == res.code){
+        //初始化初始数据
+        this.tags = res.data
+        } else{
         }
       })
     }

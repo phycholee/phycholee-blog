@@ -24,6 +24,23 @@ tag.tags  = () => {
   })
 }
 
+tag.indexTags  = (params) => {
+  return new Promise((resolve, reject) => {
+    let url = getUrl('indexTags')
+
+    Vue.http.post(url, params).then((response)=>{
+      console.log(response.body)
+      resolve(response.body)
+    }, (response)=>{
+      let data  = {
+        code: 400,
+        message: '未知错误'
+      }
+      resolve(data)
+    })
+  })
+}
+
 tag.get  = id => {
   return new Promise((resolve, reject) => {
     let url = getUrl('tag')
