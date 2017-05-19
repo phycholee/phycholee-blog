@@ -44,7 +44,7 @@
     },
     computed:{
       bgImg(){
-        var winHeight
+        let winHeight
         if (window.innerHeight)
           winHeight = window.innerHeight;
         else if ((document.body) && (document.body.clientHeight))
@@ -83,7 +83,7 @@
     }
   }
 
-  var setColorClass = (tags) => {
+  let setColorClass = (tags) => {
 
     const tagPrimary = { 'tag-primary' : true }
     const tagSuccess = { 'tag-success' : true }

@@ -20,6 +20,21 @@
         </div>
 
         <div class="cd-timeline-block">
+          <div class="cd-timeline-icon cd-danger">
+            <i class="fa fa-laptop"></i>
+          </div>
+
+          <div class="cd-timeline-content">
+            <h2 class="time-line-title">实习</h2>
+            <p>
+              加入有礼派大家庭，在这里工作、学习...
+            </p>
+            <!--<a href="#0" class="cd-read-more">Read more</a>-->
+            <span class="cd-date">2017-02-22</span>
+          </div>
+        </div>
+
+        <div class="cd-timeline-block">
           <div class="cd-timeline-icon cd-success">
             <i class="fa fa-github"></i>
           </div>

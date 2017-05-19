@@ -73,9 +73,20 @@
         params : {
           page: 1,
           limit: 10,
-          tagId: this.$route.query.id
+          tagId: '',
         },
         loading: false
+      }
+    },
+    computed:{
+      previousShow(){
+        return this.params.page > 1
+      },
+      nextShow(){
+        //计算总页数
+        let lastPage = parseInt(this.pageTotal/this.params.limit+1)
+        console.log('总页数：'+lastPage)
+        return this.params.page < lastPage
       }
     },
     mounted(){
@@ -83,6 +94,8 @@
       window.scrollTo(0, 0)
 
       this.$store.dispatch('getTag', this.$route.query.id)
+
+      this.params.tagId= this.$route.query.id
 
       request.article.articles(this.params).then(res=>{
         if(200 == res.code){
@@ -93,6 +106,16 @@
       })
     },
     updated(){
+      this.$store.dispatch('getTag', this.$route.query.id)
+      this.params.tagId= this.$route.query.id
+      request.article.articles(this.params).then(res=>{
+        if(200 == res.code){
+          this.articles = res.data
+          this.pageTotal = res.total
+        } else{
+        }
+      })
+
       //还原当前滚动条高度
       let height = this.$store.state.homeScrollHeight
       if (height > 0){
